@@ -89,6 +89,20 @@ def telegramWebhook():
     else:
         return  make_response('EVENT_NOT_RECEIVED', 403)
 
+@app.route('/teams/webhook', methods=['GET', 'POST'])
+def teamsWebhook():
+    req = request.get_json(silent=True, force=True)
+    
+    print("Request:")
+    print(request.method)
+    print(request.headers)
+    print(json.dumps(req, indent=4))
+       
+    #token = request.args.get('hub.verify_token', '')
+    #return make_response('EVENT_RECEIVED', 200)
+    return make_response("{\"type\": \"message\",\"text\":\"Hola, soy el bot1!\"}", 200)
+     
+
 @app.route('/test', methods=['GET'])
 def test():
     return  "Bienvenido Prueba Team RPA !!"
